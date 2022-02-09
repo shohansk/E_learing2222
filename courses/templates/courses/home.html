@@ -1,0 +1,67 @@
+{% extends "courses/base.html" %}
+{% load static %}
+{% load courses_custom_tag %}
+{% block title %}
+   home
+{% endblock title %}
+{% block content %}
+
+<style>
+   .price{
+      font-size: 20px;
+   }
+</style>
+
+<div class="container-fluid">
+
+   <div class="row">
+
+      {% for item in courses %}
+
+            
+
+            <div class="col mx-auto">
+               <div class="card mx-auto" style="width: 18rem;">
+                  <img src="{{ item.thumbnail.url }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    
+                  <h5 class="card-title">{{item.name}}</h5>
+                  <p class="card-text">
+                     Save {{item.discount}}%
+                     <br>
+                    <span class="price">
+                           <del> {{item.price |taka}}</del>
+                           &nbsp;
+                        
+                           <span> {% cal_sellprice item.price item.discount as value  %} {{value | taka}}</span>
+                    </span>
+               
+                  </p>
+                  
+                  </div>
+                  <div class="card-footer p-0">
+                     <div class="row no-gutters">
+
+                        <div class="col ">
+                           <a href="" class="btn btn-light w-100">Enroll Now</a>
+                        </div>
+                        <div class="col ">
+                           <a href="/course/{{item.slug}} "  class="btn btn-primary col-12">Show More</a>
+                        </div>
+
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+               
+         
+
+     {% endfor %}
+
+   </div>
+
+</div>
+
+
+{% endblock content %}

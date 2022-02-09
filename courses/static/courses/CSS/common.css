@@ -1,0 +1,14 @@
+
+   .price{
+      font-size: 20px;
+   }
+
+   #video_list{
+      overflow-y: scroll;
+   }
+
+   .active_video{
+      background-color: rgb(77, 97, 100);
+      color: rgb(255, 255, 255);
+   }
+

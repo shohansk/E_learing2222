@@ -1,0 +1,128 @@
+{% extends "courses/base.html" %}
+{% load static %}
+{% load courses_custom_tag %}
+{% block title %}
+   home
+{% endblock title %}
+{% block content %}
+
+<style>
+      a{
+      text-decoration: none;
+      color: black;
+   }
+  
+</style>
+
+
+<div class="container-fluid mt-5">
+
+   <div hidden>
+      <h1>{{course.name}}</h1>
+      <h1>{{course.price}}</h1>
+      <h1>{{course.discount}}</h1>
+      <h1>{{course.description}}</h1>
+      <h1>{{course.video_set.all}}</h1>
+      <h1>{{course.tag_set.all}}</h1>
+      <h1>{{course.prerequisite_set.all}}</h1>
+      <h1>{{course.learing_set.all}}</h1>
+     
+   </div>
+   
+   <div class="card p-3">
+      <div class="row">
+            <!-- player -->
+         <div class="col">
+            <div class="mx-auto">
+   
+               <iframe id = 'player' width="100%" height="600px" src="https://www.youtube.com/embed/{{video.video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+   
+            </div>
+         </div>
+   <!-- list of video -->
+         <div class="col-3">
+          
+               <ul id="video_list" class="list-group ">
+               
+                  {% for v in videos %}
+                     <li class="list-group-item  {% if v == video %}
+                     active_video
+                     {% endif %} ">
+                        <a href="?lecture={{v.serial_number}}"> {{v}}
+
+                        </a>
+      
+                     </li>              
+                  {% endfor %}
+                
+               </ul>
+         
+         </div>
+   
+      </div>
+   </div>
+
+   <!-- course detail -->
+   <div class="mt-3">
+      <div>
+         <div class="card" >
+            <div class="card-body">
+              <h5 class="card-title">{{course.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{course.description}}</h6>
+            
+            </div>
+          </div>
+         <p></p>
+      </div>
+      <!-- Prerequisite  -->
+      <div>
+         <div class="mt-3">
+            <div>
+               <div class="card" >
+                  <div class="card-body">
+                     <h5 class="card-title">Prerequisite :</h5>
+                    {% for pre in course.prerequisite_set.all %}
+                    <li class="card-subtitle mb-2 text-muted">{{pre.description}}</li>
+                    {% endfor %}
+                  
+                  </div>
+                </div>
+               <p></p>
+            </div>
+      </div>
+      <!-- learning -->
+      <div>
+         <div class="mt-3">
+            <div>
+               <div class="card" >
+                  <div class="card-body">
+                     <h5 class="card-title">Learning :</h5>
+                    {% for learning in course.learing_set.all %}
+                    <li class="card-subtitle mb-2 text-muted">{{learning.description}}</li>
+                    {% endfor %}
+                  
+                  </div>
+                </div>
+               <p></p>
+            </div>
+      </div>
+    
+      <br>
+
+   </div>
+
+</div>
+
+
+{% block css %}
+      <link rel="stylesheet" href="{% static 'courses/CSS/scrollbar.css' %}">
+      <link rel="stylesheet" href="{% static 'courses/CSS/common.css' %}">  
+{% endblock css %}
+
+{% block js %}
+  
+   <script src="{% static '/courses/js/course_page.js' %}"></script>
+{% endblock js %}
+
+
+{% endblock content %}
