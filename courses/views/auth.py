@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from courses.forms.login_form import LoginForm
 
 
+
 from courses.models import Course,Video
 from courses.forms import ResgistrationFrom
 from django.views import View
@@ -39,7 +40,13 @@ class Login(View):
         return render(request,template_name="courses/login_page.html",context= {'form': form})
 
     def post(self,request):
-        return HttpResponse("DSfsdf")
+        form = LoginForm(request = request, data = request.POST)
+        context = {
+            "form" : form
+        }
+        if(form.is_valid()):
+            return redirect("home")
+        return render(request,template_name="courses/login_page.html",context= {'form': form})
 
 
     
