@@ -1,6 +1,6 @@
 from atexit import register
 from django.contrib import admin
-from courses.models import Course,Tag,Learing,Prerequisite,Video
+from courses.models import Course,Tag,Learing,Prerequisite,Video,Payment,UserCourse
 # Register your models here.
 
 class TagAdmin(admin.TabularInline):
@@ -20,3 +20,5 @@ class CourseAdmin(admin.ModelAdmin):
 
 admin.site.register(Course , CourseAdmin)
 admin.site.register(Video)
+admin.site.register(Payment)
+admin.site.register(UserCourse)
