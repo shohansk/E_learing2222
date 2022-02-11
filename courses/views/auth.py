@@ -2,6 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from courses.forms.login_form import LoginForm
+from django.contrib.auth import logout
 
 
 
@@ -47,6 +48,11 @@ class Login(View):
         if(form.is_valid()):
             return redirect("home")
         return render(request,template_name="courses/login_page.html",context= {'form': form})
+
+
+def signout(request):
+    logout(request)
+    return redirect("home")
 
 
     
