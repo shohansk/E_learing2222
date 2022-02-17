@@ -17,10 +17,8 @@
          <hr/>
 
 
-{% if order is not None  %}
-   {{order}}
-{% endif %}
-{{order}}
+
+
 
   <div class="row mt-5">
                   <div class="col mx-auto">
@@ -66,6 +64,39 @@
  
 
 </div>
+{% if order is not None  %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+<script>
+   var options = {
+   "key": "rzp_test_k49MLQlx6yof95", // Enter the Key ID generated from the Dashboard
+   
+   "name": "Shohan Learning Site",
+   "description": "Payment for  {{course.name}}",
+   "image": "https://png.pngtree.com/png-vector/20191021/ourmid/pngtree-black-quill-feather-pen-with-writing-line-vector-logo-design-png-image_1840025.jpg",
+   "order_id": "{{order.id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+   "callback_url": "http://localhost:8000/verify_payment",
+   "prefill": {
+       "name": "{{user.first_name}}",
+       "email": "{{user.email}}",
+      
+   },
+  
+   "theme": {
+       "color": "#3399cc"
+   }
+};
+var rzp1 = new Razorpay(options);
+rzp1.open();
+{% comment %} document.getElementById('rzp-button1').onclick = function(e){
+   rzp1.open();
+   e.preventDefault();
+} {% endcomment %}
+</script>
+
+{% endif %}
+
 
 
 {% endblock content %}
