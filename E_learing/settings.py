@@ -122,6 +122,11 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR
 
+# RAZORPAY
+
+KEY_SECRET = "6wm40vbXLwOsAX4xRl7bJoRT"
+KEY_ID = "rzp_test_k49MLQlx6yof95"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

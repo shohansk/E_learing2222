@@ -5,14 +5,15 @@ from django.conf.urls.static import static
 from E_learing.settings import MEDIA_ROOT ,MEDIA_URL
 from courses.models import course
 
-from courses.views import home,CoursePage
+from courses.views import home,CoursePage,checkout
 from courses.views.auth import SignUp,Login,signout
 urlpatterns = [
     path('',home , name = 'home'),
      path('logout',signout , name = 'logout'),
     path('signup',SignUp.as_view(), name = 'signup'),
     path('login',Login.as_view() , name = 'login'),
-    path('course/<str:slug>',CoursePage ,name = 'coursepage')
+    path('course/<str:slug>',CoursePage ,name = 'coursepage'),
+    path('check-out/<str:slug>',checkout ,name = 'check_out')
 
 
 

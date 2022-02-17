@@ -1,0 +1,68 @@
+{% extends "courses/base.html" %}
+{% load static %}
+{% load courses_custom_tag %}
+{% block title %}
+   Check Out 
+{% endblock title %}
+{% block content %}
+
+<style>
+   .price{
+      font-size: 20px;
+   }
+</style>
+
+<div class="container">
+       <h3/> Check Out page <h3/>
+         <hr/>
+
+
+
+
+  <div class="row mt-5">
+                  <div class="col mx-auto">
+                     <div class="card mx-auto" style="width: 18rem;">
+                        <img src="{{ course.thumbnail.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        
+                        <h5 class="card-title">{{course.name}}</h5>
+                        <p class="card-text">
+                           Save {{course.discount}}%
+                           <br>
+                        <span class="price">
+                                 <del> {{course.price |taka}}</del>
+                                 &nbsp;
+                              
+                                 <span> {% cal_sellprice course.price course.discount as value  %} {{value | taka}}</span>
+                        </span>
+
+                        </div>
+
+                           </div>
+
+                        </div>
+                   
+                 
+
+                  <div class="col">
+                     <div class="">
+                        
+                    {{course.name}}
+                     </hr>
+                     <p class ="mt-5"> Payable Amount : <b> {% cal_sellprice course.price course.discount as value  %}  {{value | taka}}</b></p
+                        
+                        
+                     </div>
+                     
+                     <a href="?action=create_payment"  class="btn btn-primary">Show More</a>
+                  </div>
+  </div>
+
+   
+
+ 
+
+</div>
+
+
+{% endblock content %}
