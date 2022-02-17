@@ -17,7 +17,10 @@
          <hr/>
 
 
-
+{% if order is not None  %}
+   {{order}}
+{% endif %}
+{{order}}
 
   <div class="row mt-5">
                   <div class="col mx-auto">
@@ -54,7 +57,7 @@
                         
                      </div>
                      
-                     <a href="?action=create_payment"  class="btn btn-primary">Show More</a>
+                     <a href="?action=create_payment"  class="btn btn-primary">Make Payment</a>
                   </div>
   </div>
 
